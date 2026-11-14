@@ -1,0 +1,21 @@
+{
+  "id": "UBUNTU-CVE-2022-1292",
+  "upstream": ["CVE-2022-1292"],
+  "details": "The c_rehash script does not properly sanitise shell metacharacters to prevent command injection.",
+  "severity": [{"type": "Ubuntu", "score": "medium"}, {"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"}],
+  "affected": [
+    {
+      "package": {"name": "openssl", "ecosystem": "Ubuntu:Pro:FIPS-updates:20.04:LTS", "purl": "pkg:deb/ubuntu/openssl?arch=source&distro=fips-updates%2Ffocal"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "1.1.1f-1ubuntu2.fips.13.1"}]}]
+    },
+    {
+      "package": {"name": "nodejs", "ecosystem": "Ubuntu:22.04:LTS", "purl": "pkg:deb/ubuntu/nodejs?arch=source&distro=jammy"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "12.22.9~dfsg-1ubuntu3.1"}]}]
+    },
+    {
+      "package": {"name": "openssl", "ecosystem": "Ubuntu:22.04:LTS", "purl": "pkg:deb/ubuntu/openssl?arch=source&distro=jammy"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "3.0.2-0ubuntu1.1"}]}],
+      "ecosystem_specific": {"binaries": [{"binary_name": "libssl3", "binary_version": "3.0.2-0ubuntu1.1"}, {"binary_name": "openssl", "binary_version": "3.0.2-0ubuntu1.1"}]}
+    }
+  ]
+}

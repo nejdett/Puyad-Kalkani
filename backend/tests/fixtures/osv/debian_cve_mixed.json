@@ -1,0 +1,39 @@
+{
+  "id": "DEBIAN-CVE-2024-2511",
+  "modified": "2024-11-20T05:41:12Z",
+  "upstream": ["CVE-2024-2511"],
+  "aliases": ["CVE-2024-2511"],
+  "details": "Issue summary: Some non-default TLS server configurations can cause unbounded memory growth when processing TLSv1.3 sessions.",
+  "severity": [{"type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}],
+  "affected": [
+    {
+      "package": {"name": "openssl", "ecosystem": "Debian:12", "purl": "pkg:deb/debian/openssl?arch=source&distro=bookworm"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "3.0.14-1~deb12u1"}]}],
+      "ecosystem_specific": {"urgency": "not yet assigned"}
+    },
+    {
+      "package": {"name": "openssl", "ecosystem": "Debian:11", "purl": "pkg:deb/debian/openssl?arch=source&distro=bullseye"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "1.1.1w-0+deb11u2"}]}],
+      "ecosystem_specific": {"urgency": "not yet assigned"}
+    },
+    {
+      "package": {"name": "platform/external/boringssl", "ecosystem": "Android"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "13"}, {"fixed": "13.0.0-2024-05-01"}]}]
+    },
+    {
+      "package": {"name": "openssl", "ecosystem": "macOS"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "14.5"}]}]
+    },
+    {
+      "package": {"name": "cryptography", "ecosystem": "PyPI", "purl": "pkg:pypi/cryptography"},
+      "ranges": [{"type": "ECOSYSTEM", "events": [{"introduced": "0"}, {"fixed": "42.0.6"}]}]
+    },
+    {
+      "package": {"name": "openssl", "ecosystem": "npm", "purl": "pkg:npm/openssl"},
+      "ranges": [{"type": "SEMVER", "events": [{"introduced": "0"}, {"fixed": "99.0.0"}]}]
+    },
+    {
+      "ranges": [{"type": "GIT", "repo": "https://github.com/openssl/openssl", "events": [{"introduced": "e04bd3433fd84e1861bf258ea37928d9845e6a86"}, {"fixed": "b52867a9f618bb955bed2a3ce3db4d4f97ed8e5d"}]}]
+    }
+  ]
+}

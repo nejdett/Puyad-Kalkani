@@ -1,0 +1,10 @@
+{
+  "host": "0.0.0.0",
+  "port": 8000,
+  "secret": "",
+  "token": "",
+  "controller": "http://ANA_MAKINA_IP:8000",
+  "interval": 60,
+  "pid_file": "agent.pid",
+  "log_file": "agent.log"
+}
