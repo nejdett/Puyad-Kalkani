@@ -154,6 +154,7 @@ class TestClassify:
 
 class TestInstalledSources:
 
+    @patch("cve_analyzer.compat.find_cmd", lambda name: f"/usr/bin/{name}")
     @patch("cve_analyzer.compat.IS_LINUX", True)
     @patch("cve_analyzer.subprocess.run")
     def test_binaries_grouped_by_source(self, mock_run):
@@ -269,6 +270,7 @@ class TestGetInstalledPackages:
             assert isinstance(ver, str)
             assert len(ver) > 0
 
+    @patch("cve_analyzer.compat.find_cmd", lambda name: f"/usr/bin/{name}")
     @patch("cve_analyzer.compat.IS_LINUX", True)
     @patch("cve_analyzer.subprocess.run")
     def test_filter_only_installed_and_strip_arch(self, mock_run):
@@ -489,6 +491,7 @@ class FakeApt:
         raise AssertionError(cmd)
 
 
+@patch("cve_analyzer.compat.find_cmd", lambda name: f"/usr/bin/{name}")
 class TestFixCvePackage:
 
     def test_invalid_package_name(self):
@@ -568,6 +571,7 @@ class TestFixCvePackage:
         assert all("x;rm -rf /" not in c for c in fake.calls)
 
 
+@patch("cve_analyzer.compat.find_cmd", lambda name: f"/usr/bin/{name}")
 class TestFixCveBatch:
 
     def test_empty_packages_returns_error(self):

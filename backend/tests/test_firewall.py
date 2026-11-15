@@ -105,6 +105,13 @@ def test_korunan_adres_engellenmiyor(fw: FakeIptables, ip: str) -> None:
     assert firewall.list_active() == []
 
 
+def test_yeni_acilista_kendi_ip_korunuyor(fw: FakeIptables, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(firewall.time, "monotonic", lambda: 60.0)
+    assert firewall.block("10.0.0.5", "test", "panel")["success"] is False
+    assert firewall.block("203.0.113.7", "test", "panel")["success"] is True
+    assert fw.blocked() == ["203.0.113.7"]
+
+
 def test_gecersiz_ip(fw: FakeIptables) -> None:
     assert firewall.block("1.2.3.4; rm -rf /", "test", "panel")["success"] is False
     assert not any(c[0] == "iptables" for c in fw.calls)

@@ -66,7 +66,8 @@ def _remove_rule(ip: str) -> None:
 
 def _own_addresses() -> set[str]:
     global _own_cache
-    if time.monotonic() - _own_cache[0] < 300:
+    # monotonic açılıştan sayıyor, ilk 5 dakikada boş önbellek taze sanılmasın
+    if time.monotonic() < _own_cache[0]:
         return _own_cache[1]
     found: set[str] = set()
     try:
@@ -84,7 +85,7 @@ def _own_addresses() -> set[str]:
                     found.add(str(a["local"]))
     except Exception:
         pass
-    _own_cache = (time.monotonic(), found)
+    _own_cache = (time.monotonic() + 300, found)
     return found
 
 

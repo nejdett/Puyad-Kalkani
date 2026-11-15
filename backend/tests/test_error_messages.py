@@ -175,6 +175,7 @@ def test_iptables_error_generic(run_kwargs: dict[str, object], expected: str,
     import telegram_manager
 
     with patch.object(subprocess, "run", **run_kwargs), \
+         patch("compat.find_cmd", lambda name: f"/usr/sbin/{name}"), \
          caplog.at_level(logging.WARNING, logger="firewall"):
         err = telegram_manager.PuyadTelegramManager._run_action("block_ip", {"ip": "203.0.113.9"})
     _assert_generic(err, expected, caplog)

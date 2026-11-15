@@ -10,6 +10,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import backup_manager
+import compat
 import config
 import database
 import firewall
@@ -24,6 +25,7 @@ Mgr = telegram_manager.PuyadTelegramManager
 def env(monkeypatch: pytest.MonkeyPatch) -> Iterator[dict[str, Any]]:
     fake = FakeIptables()
     monkeypatch.setattr(firewall.subprocess, "run", fake)
+    monkeypatch.setattr(compat, "find_cmd", lambda name: f"/usr/sbin/{name}")
     monkeypatch.setattr(firewall, "_own_cache", (0.0, set()))
     monkeypatch.setattr(honeypot, "_should_run_forensic", lambda ip, now: False)
     monkeypatch.setattr(honeypot, "_log_hit", lambda *a, **k: None)
